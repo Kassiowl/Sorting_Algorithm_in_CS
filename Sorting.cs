@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ordenacao
-{
     public class Sorting
     {
         private static void swap(int n1, int n2, int[] arr)
@@ -116,4 +114,3 @@ namespace Ordenacao
         }
 
     }
-}
