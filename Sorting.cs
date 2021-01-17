@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
     public class Sorting
     {
+
+        //Utility functions (private)
         private static void swap(int n1, int n2, int[] arr)
         {
             int swap = arr[n1];
@@ -45,6 +48,54 @@ using System.Text;
             }
         }
 
+        private static int GetMax(int[] arr) 
+        {
+            int maximum = arr[0];
+            for(int x = 1; x < arr.Length - 1; x++) 
+                {
+                    if (arr[x] > maximum) 
+                    {
+                        maximum = arr[x];
+                    }
+                }
+            return maximum;
+        }
+        
+        private static void CountSort(int[] arr, int exp) 
+        {
+            int[] output = new int[arr.Length];
+            int i;
+
+            int[] count = new int[10];
+            for(i = 0; i < 10; i++) 
+            {
+                count[i] = 0;
+            }
+            for(i = 0; i < arr.Length; i++) 
+            {
+                count[(arr[i] / exp) % 10]++;
+            }
+
+            for(i = 1; i < 10; i++) 
+            {
+                count[i] += count[i - 1];
+            }
+
+            for(i = arr.Length - 1; i >= 0; i--) 
+            {
+                output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+                count[(arr[i] / exp) % 10]--;
+            }
+
+
+            for(i = 0; i < arr.Length; i++) 
+            {
+                arr[i] = output[i];
+            }
+
+        }
+
+        //Sorting functions (public)
         public static void BubbleSort(int[] arr)
         {
 
@@ -112,5 +163,16 @@ using System.Text;
                 }
             }
         }
+
+        public static void RadixSort(int[] arr) 
+        {
+            int max = arr.Max();
+            for(int exp = 1; max / exp > 0; exp *= 10)
+            {
+                CountSort(arr, exp);
+            }
+        }
+
+       
 
     }
