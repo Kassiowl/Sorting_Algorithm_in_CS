@@ -1,4 +1,4 @@
-Sorting Algorithms in c# for learning purpose
+Sorting Algorithms in c#
 
 BubbleSort
 SelectionSort
